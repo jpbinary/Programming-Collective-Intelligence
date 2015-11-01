@@ -22,6 +22,9 @@ def similarity_distance(input_recs, person1, person2):
 
 
 # function for calculating (Pearson correlation coefficient) for p1 and p2
+#   This function will have a value between -1 and 1
+#   1 means that two critics have the exact same ratings
+
 def similarity_pearson(input_recs, p1, p2):
     # Gather list of shared_items
     shared_items = {}
@@ -35,13 +38,29 @@ def similarity_pearson(input_recs, p1, p2):
         return 0
 
     # Add up all of the ratings for each person
-    sum_p1 = sum([input_recs[p1][each_critic_movie_rating_key] for each_critic_movie_rating_key in shared_items])
-    sum_p2 = sum([input_recs[p2][each_critic_movie_rating_key] for each_critic_movie_rating_key in shared_items])
+    sum_p1 = sum([input_recs[p1][each_critic_movie_rating_key]
+                  for each_critic_movie_rating_key in shared_items])
+    sum_p2 = sum([input_recs[p2][each_critic_movie_rating_key]
+                  for each_critic_movie_rating_key in shared_items])
 
     # Sum up the squares
-    sqr_sum_p1 = sum([pow(input_recs[p1][each_critic_movie_rating_key], 2) for each_critic_movie_rating_key in shared_items])
-    sqr_sum_p2 = sum([pow(input_recs[p2][each_critic_movie_rating_key], 2) for each_critic_movie_rating_key in shared_items])
+    sqr_sum_p1 = sum([pow(input_recs[p1][each_critic_movie_rating_key], 2)
+                      for each_critic_movie_rating_key in shared_items])
+    sqr_sum_p2 = sum([pow(input_recs[p2][each_critic_movie_rating_key], 2)
+                      for each_critic_movie_rating_key in shared_items])
 
+    # Multiply the ratings for p1 and p2 together and get the Sum total
+    sum_multiply_p1_and_p2 = sum([input_recs[p1][each_critic_movie_rating_key]*
+                                  input_recs[p2][each_critic_movie_rating_key]
+                               for each_critic_movie_rating_key in shared_items])
+
+    # Calculate the Pearson score
+    numerator = sum_multiply_p1_and_p2 - (sum_p1*sum_p2/match_length)
+    denominator = sqrt( (sqr_sum_p1-pow(sum_p1,2)/match_length) * (sqr_sum_p2-pow(sum_p2,2)/match_length) )
+    if denominator == 0:
+        return 0
+
+    return numerator/denominator
 
 
 # set of movies
