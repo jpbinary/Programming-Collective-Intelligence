@@ -20,7 +20,11 @@ increasing_distance_between_toby_lasalle = 1/(1 + sqrt((pow(critics['Toby']['Sna
                                       (pow(critics['Mick LaSalle']['Snakes on a Plane']-critics['Mick LaSalle']['You, Me and Dupree'], 2)))))
 print 'increasing_distance_between_toby_lasalle', increasing_distance_between_toby_lasalle
 
-print similarity_score(critics, 'Lisa Rose', 'Gene Seymour')
-
+print 'similarity_score', similarity_score(critics, 'Lisa Rose', 'Gene Seymour')
+print 'similarity_score', similarity_score(critics, 'Lisa Rose', 'Jack Matthews')
+print 'similarity_score', similarity_score(critics, 'Lisa Rose', 'Claudia Puig')
+print 'similarity_score', similarity_score(critics, 'Lisa Rose', 'Michael Phillips')
+print 'similarity_score', similarity_score(critics, 'Lisa Rose', 'Mick LaSalle')
+print 'similarity_score', similarity_score(critics, 'Lisa Rose', 'Toby')
 
 # Pearson correlation

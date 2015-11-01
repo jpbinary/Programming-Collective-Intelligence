@@ -5,18 +5,19 @@ from math import sqrt
 def similarity_score(input_recs, person1, person2):
     # Gather list of shared_items
     shared_items = {}
-    for item in input_recs[person1]:
-        if item in input_recs[person2]:
-            shared_items[item] = 1
+    for item_key in input_recs[person1]:
+        if item_key in input_recs[person2]:
+            shared_items[item_key] = 1
     # Return 0 if no common ratings
     if len(shared_items) == 0:
         return 0
 
     # Add the squares of the differences
-    sum_of_squares = sum(pow(input_recs[person1][item]-input_recs[person2][item], 2)
-                         for item in input_recs[person1]
-                         if item in input_recs[person2])
+    sum_of_squares = sum(pow(input_recs[person1][item_key]- input_recs[person2][item_key], 2)
+                         for item_key in input_recs[person1]
+                         if item_key in input_recs[person2])
 
+    # Return the Euclidean Distance Score
     return 1/(1 + sqrt(sum_of_squares))
 
 
