@@ -24,7 +24,6 @@ def similarity_distance(input_recs, person1, person2):
 # function for calculating (Pearson correlation coefficient) for p1 and p2
 #   This function will have a value between -1 and 1
 #   1 means that two critics have the exact same ratings
-
 def similarity_pearson(input_recs, p1, p2):
     # Gather list of shared_items
     shared_items = {}
